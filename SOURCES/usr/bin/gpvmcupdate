@@ -1,0 +1,29 @@
+#! /bin/bash
+############################################################
+#                                                          #
+#                       gpvmcupdate                        #
+#                                                          #
+############################################################
+#
+# author:    mpuel@in2p3.fr
+# date:      lundi 4 mars 2013, 14:09:44 (UTC+0100)
+# copyright: Copyright (c) by IN2P3 computing centre, Villeurbanne (Lyon), France
+#
+# usage:  gpvmcupdate
+#
+# purpose:
+#  * used by vmcatcher as a hook for images updates
+#  * inform glancepush for images updates
+
+spooldir=/var/spool/glancepush
+rundir=/var/run/glancepush
+vmcmapping=/etc/gpvmcmapping
+
+source $vmcmapping
+
+[ -z "$VMCATCHER_CACHE_DIR_CACHE" -o -z "$VMCATCHER_EVENT_DC_TITLE" -o -z "$VMCATCHER_EVENT_DC_IDENTIFIER" ] && { echo "some vmcatcher environment variables are not set"; exit 1; }
+
+image=${vmcmapping["$VMCATCHER_EVENT_DC_TITLE"]}
+
+# trigger glancepush
+echo "file=${VMCATCHER_CACHE_DIR_CACHE}${VMCATCHER_EVENT_DC_IDENTIFIER}" > "$spooldir/$image"

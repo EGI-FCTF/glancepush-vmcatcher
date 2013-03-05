@@ -1,0 +1,19 @@
+.TH gpvmcmapping 5 "2013/02/28" "glancepush-vmcatcher-0.1" 
+.SH NAME
+gpvmcmapping \- glancepush-vmcatcher vmcatcher to glance mapping definition
+
+.SH DESCRIPTION
+The configuration file has to be written in shell syntax as it is sourced by tools and to define the associative array \fBvmcmapping\fR:
+
+  example: 
+    declare -A vmcmapping=(                
+        ["EGI-Demo-CESGA"]="vmc-cesga"
+    )
+
+  in this example, the dc:title field defined in the image list will be mapped to an image named vmc-cesga in the glance catalog.
+
+
+.SH "AUTHOR(S)"
+.na
+.nf
+Mattieu Puel @ CC-IN2P3 FR

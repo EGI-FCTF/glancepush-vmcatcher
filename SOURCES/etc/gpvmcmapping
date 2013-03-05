@@ -1,0 +1,4 @@
+# associates field dc:title from vmcatcher index to the desired glance image name
+#declare -A vmcmapping=(
+#        ["CernVM Batch Node (QEMU,KVM)"]="vmc-cernvm-batch-x86"
+#)
